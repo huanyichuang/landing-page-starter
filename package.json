@@ -17,5 +17,8 @@
     "grunt-cwebp": "^3.0.3",
     "grunt-terser": "^1.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "lozad": "^1.16.0",
+    "tiny-slider": "^2.9.3"
+  }
 }
