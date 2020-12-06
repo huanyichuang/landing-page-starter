@@ -2,6 +2,26 @@ module.exports = function ( grunt ) {
 	// Project configuration.
 	grunt.initConfig( {
 		pkg: grunt.file.readJSON( 'package.json' ),
+		watch: {
+			css: {
+				files: '**/*.scss',
+				tasks: ['sass','autoprefixer','cssmin'],
+				options: {
+					livereload: true,
+				}
+			},
+			js: {
+				files: 'js/*.js',
+				tasks: ['terser'],
+				options: {
+					livereload: true,
+				}
+			},
+			webp: {
+				files: 'assets/**/*.{png,jpg,gif}',
+				tasks: ['cwebp'],
+			}
+		},
 		terser: {
 			options: {
 				mangle: {
@@ -68,21 +88,38 @@ module.exports = function ( grunt ) {
 				],
 			},
 		},
+		browserSync: {
+			bsFiles: {
+				src : [
+					'css/*.min.css',
+					'js/*.min.js',
+					'*.html'
+				]
+			},
+			options: {
+				watchTask: true,
+				server: './',
+			}
+        },
 	} );
 
 	// Load the plugin that provides the "uglify" task.
+	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-terser' );
 	grunt.loadNpmTasks( 'grunt-autoprefixer' );
 	grunt.loadNpmTasks( 'grunt-contrib-sass' );
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 	grunt.loadNpmTasks( 'grunt-cwebp' );
+	grunt.loadNpmTasks( 'grunt-browser-sync' );
 
 	// Default task(s).
 	grunt.registerTask( 'default', [
-		'terser',
-		'sass',
-		'autoprefixer',
-		'cssmin',
-		'cwebp',
+		'browserSync',
+		'watch',
+		// 'terser',
+		// 'sass',
+		// 'autoprefixer',
+		// 'cssmin',
+		// 'cwebp',
 	] );
 };

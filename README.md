@@ -19,6 +19,9 @@ In order to minimize the size of static resources, no CSS framework is included 
 ### Styles
 The file structure of SCSS file is based on the WordPress starter theme [_s](https://underscores.me/).
 
+# Update Log
+* 20201206: Added browser-sync and sass-watch
+
 ### Assets
 If you want to convert your image files to WebP, save your image files in `assets/img`, and the Grunt process will auto detect the files when you execute the `grunt` command.
 
